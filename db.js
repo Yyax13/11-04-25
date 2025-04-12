@@ -26,8 +26,14 @@ const pool = new Pool({
 async function testConnection() {
     let client;
     try {
-        //
+        client = pool.connect();
+        console.log('Conectado com sucesso!!');
     } catch (err) {
-        
+        console.log(`
+            Falha na conexão:
+            código do erro: ${err.code}
+            erro: ${err}`)
+    } finally {
+        client.release();
     }
 }

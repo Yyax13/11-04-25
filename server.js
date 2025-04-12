@@ -11,8 +11,7 @@ const pool = require('./db');
 
 //Agora vamos definir nosso app, usaremos express para facilitar as coisas
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 app.use(express.static(path.join(__dirname, "public")));
 
 //Definiremos que a porta em que o app vai rodar no .env
@@ -28,4 +27,3 @@ function createResult() {
         others: {}
     };
 };
-
