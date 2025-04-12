@@ -32,8 +32,10 @@ async function testConnection() {
         console.log(`
             Falha na conexão:
             código do erro: ${err.code}
-            erro: ${err}`)
+            erro: ${err}`);
     } finally {
         client.release();
     }
-}
+};
+
+testConnection()
