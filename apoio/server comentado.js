@@ -16,7 +16,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Definiremos que a porta em que o app vai rodar no .env
 const PORT = process.env.PORT || 3001;
-const sessions = {}; //Aqui, iremos armazenar cookies de sessão
+const sessions = {}; //Aqui, iremos armazenar cookies de sessão, não utilizarei quaisquer abstrações nesse desafio, pois pretendo ensinar primeiro, como fazemos na raça, dps usaremo abstrações como express sessions
 
 //Vou iniciar criando a func createResult(), que vou usar para padronizar os responses nos endpoints
 function createResult() {

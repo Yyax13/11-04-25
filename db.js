@@ -44,14 +44,14 @@ async function createTables() {
             Else, -10
         */
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS viajantes (
+            CREATE TABLE IF NOT EXISTS travelers (
                 TravelerID SERIAL UNIQUE PRIMARY KEY,
                 Traveler varchar(255) NOT NULL UNIQUE,
                 TravelerSecret varchar(255) NOT NULL,
                 TravelerReputation INT NOT NULL DEFAULT 50,
                 TravelerStatus INT NOT NULL DEFAULT 1,
                 Travels INT[]
-        )`).then('Tabela viajantes criada com sucesso (ou já existe)');
+        )`).then('travelers table has been sucessfuly created');
         
         /* EventEra é INT:
             0: Todas > utilizada apenas em buscas, não deve ser inserida na DB,
@@ -61,13 +61,13 @@ async function createTables() {
             4: Pós humana
         */
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS eventos (
+            CREATE TABLE IF NOT EXISTS events (
                 EventID SERIAL UNIQUE PRIMARY KEY,
                 EventName varchar(255) NOT NULL,
                 EventDate DATE NOT NULL UNIQUE,
                 EventDescription varchar(255),
                 EventEra INT NOT NULL
-        )`).then(console.log('Tabela eventos criada com sucesso (ou já existe)'));
+        )`).then(console.log('events table has been sucessfuly created'));
         
         /* InterferenceType é INT:
             1: Correção,
@@ -79,12 +79,12 @@ async function createTables() {
             2: Negada
         */
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS interferencias (
+            CREATE TABLE IF NOT EXISTS interferences (
                 InterferenceID SERIAL UNIQUE PRIMARY KEY,
                 InterferenceType INT NOT NULL DEFAULT 2,
                 InterferenceStatus INT NOT NULL DEFAULT 0,
                 TravelerID INT NOT NULL
-        )`).then(console.log('Tabela interferencias criada com sucesso (ou já existe)'));
+        )`).then(console.log('interferences table has been sucessfuly created'));
         
         /* 
             Abaixo, definimos alguns campos, o TravelerID é quem foi, e o EventID e para quando ele foi.
@@ -93,15 +93,15 @@ async function createTables() {
                 2: Falha
         */
         await pool.query(`
-            CREATE TABLE IF NOT EXISTS viagens (
+            CREATE TABLE IF NOT EXISTS travels (
                 TravelID SERIAL UNIQUE PRIMARY KEY,
                 TravelerID INT NOT NULL,
                 EventID INT NOT NULL,
                 TravelStatus INT NOT NULL DEFAULT 1
-            )`).then(console.log('Tabela viagens criada com sucesso (ou já existe)'));
+            )`).then(console.log('travels table has been sucessfuly created'));
     } catch (err) {
         console.log(`
-            Falha na criação da tabela:
+            Falha na criação das tabelas:
             código do erro: ${err.code}
             erro: ${err}
         `);
