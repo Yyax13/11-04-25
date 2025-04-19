@@ -130,7 +130,8 @@ async function signIn(Traveler, TravelerSecret) {
             throw new Error('TravelerNotFound', {reason: 'Traveler: ' + Traveler + ', send by the user on the client-side, do not exists in database', errorStatus: 400});
         } 
 
-        //Amanhã termino, falta fazer o match
+        const match = checkHash(TravelerSecret, secretFromDB[0].TravelerSecret);
+        if (!match) {}
     } catch (err) {
         if (err.message == 'TravelerNotFound') {
             result.status = 400;
